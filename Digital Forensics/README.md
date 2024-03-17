@@ -37,3 +37,68 @@ for offline analysis, investigators should navigate to the default file path for
 | Shortcut (LNK) Files | Various locations (e.g., Desktop, Start Menu)                 | Target executable, file paths, timestamps, user interactions                                      |
 | Recent Items      | User-specific folders (e.g., %AppData%\Microsoft\Windows\Recent) | Recently accessed files                                                                           |
 | Windows Event Logs | C:\Windows\System32\winevt\Logs                                | Various event logs containing process creation, termination, and other events                      |
+## Windows Persistence Artifacts
+
+
+### Run/RunOnce Keys
+- HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+- HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce
+- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+- HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\
+
+### Keys used by WinLogon Process
+- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell
+
+### Startup Keys
+- HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders
+- HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders
+- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders
+- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User
+
+### Schtasks
+-  C:\Windows\System32\Tasks
+
+### Services
+- HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services
+
+
+## Web Browser Forensics
+
+| Artifact              | Description                                                                                                       |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------|
+| Browsing History      | Records of websites visited, including URLs, titles, timestamps, and visit frequency.                             |
+| Cookies               | Small data files stored by websites on a user's device, containing information such as session details, preferences, and authentication tokens. |
+| Cache                 | Cached copies of web pages, images, and other content visited by the user. Can reveal websites accessed even if the history is cleared. |
+| Bookmarks/Favorites   | Saved links to frequently visited websites or pages of interest.                                                    |
+| Download History      | Records of downloaded files, including source URLs, filenames, and timestamps.                                     |
+| Autofill Data         | Information automatically entered into forms, such as names, addresses, and passwords.                              |
+| Search History        | Queries entered into search engines, along with search terms and timestamps.                                       |
+| Session Data          | Information about active browsing sessions, tabs, and windows.                                                      |
+| Typed URLs            | URLs entered directly into the address bar.                                                                        |
+| Form Data             | Information entered into web forms, such as login credentials and search queries.                                   |
+| Passwords             | Saved or autofilled passwords for websites.                                                                        |
+| Web Storage           | Local storage data used by websites for various purposes.                                                          |
+| Favicons              | Small icons associated with websites, which can reveal visited sites.                                               |
+| Tab Recovery Data     | Information about open tabs and sessions that can be restored after a browser crash.                                |
+| Extensions and Add-ons| Installed browser extensions and their configurations.                                                             |
+
+
+
+## System Resource Usage Monitor
+- SRUM meticulously tracks resource utilization and application usage patterns.
+- The data is housed in a database file named sru.db found in the C:\Windows\System32\sru directory. 
+- This SQLite formatted database allows for structured data storage and efficient data retrieval.
+
+- **Application Profiling:** SRUM provides a comprehensive view of executed applications and processes on a Windows system, recording details such as executable names, file paths, timestamps, and resource usage metrics. This information is vital for understanding the software landscape, identifying potentially malicious or unauthorized applications, and reconstructing user activities.
+
+- **Resource Consumption:** SRUM captures data on CPU time, network usage, and memory consumption for each application and process. This data is invaluable for investigating resource-intensive activities, identifying unusual resource consumption patterns, and detecting potential performance issues caused by specific applications.
+
+- **Timeline Reconstruction:** Analyzing SRUM data enables digital forensics experts to create timelines of application and process execution, resource usage, and system activities. This timeline reconstruction helps in understanding the sequence of events, identifying suspicious behaviors, and establishing a clear picture of user interactions and actions.
+
+- **User and System Context:** SRUM data includes user identifiers, facilitating the attribution of activities to specific users. This aids in user behavior analysis and helps determine whether certain actions were performed by legitimate users or potential threat actors.
+
+- **Malware Analysis and Detection:** SRUM data can be leveraged to identify unusual or unauthorized applications indicative of malware or malicious activities. Sudden spikes in resource usage, abnormal application patterns, or unauthorized software installations can all be detected through SRUM analysis.
+
+- **Incident Response:** During incident response, SRUM provides rapid insights into recent application and process activities, enabling analysts to quickly identify potential threats and respond effectively.
